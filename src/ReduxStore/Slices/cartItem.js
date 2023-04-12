@@ -21,7 +21,6 @@ const cartItem = createSlice({
     },
     quantityIncrementor: (state, action) => {
       const indexOfItem = state.findIndex((item) => item.id === action.payload);
-      console.log("printing action.payload ", action.payload);
       state[indexOfItem].quantity += 1;
     },
     quantityDecrementor: (state, action) => {

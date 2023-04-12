@@ -12,16 +12,28 @@ const Menucard = () => {
   const handleRemove = (item: Number)=>{
     dispatch(removeItem(item))
   }
-  const totalPrice = ()=>{
-    let price = 0;
-    items.map((item:ProductsData) => {
-      price = (item.price * item.quantity)+ price
-    })
-    setPrice(parseFloat(price.toFixed(2)))
-  }
+  // const totalPrice = ()=>{
+  //   let price = 0;
+  //   items.map((item:ProductsData) => {
+  //     price = (item.price * item.quantity)+ price
+  //   })
+  //   setPrice(parseFloat(price.toFixed(2)))
+  // }
+  // useEffect(()=> {
+  //   console.log("printing from useEffect")
+  //   totalPrice()
+  // },[totalPrice])
   useEffect(()=> {
+    const totalPrice = ()=>{
+      let price = 0;
+      items.map((item:ProductsData) => {
+       return price = (item.price * item.quantity)+ price
+      })
+      setPrice(parseFloat(price.toFixed(2)))
+    }
+    console.log("printing from useEffect")
     totalPrice()
-  },[totalPrice])
+  },[items])
   return (
     <div className="container">
       {items.map((item: ProductsData) => {

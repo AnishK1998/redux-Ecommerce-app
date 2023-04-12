@@ -33,6 +33,7 @@ const Homepage = () => {
               <img
                 src={elem.image}
                 className="h-60 w-full object-top py-2 rounded-2xl"
+                alt="product"
               />
               <p className="font-bold text-lg line-clamp-1">{elem.title}</p>
               <p className="text-sm text-slate-500 line-clamp-3">
