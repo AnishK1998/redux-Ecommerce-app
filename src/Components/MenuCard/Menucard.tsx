@@ -4,6 +4,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch} from "react-redux";
 import { ProductsData } from "../models/model";
 import { removeItem } from "../../ReduxStore/Slices/cartItem";
+import { toast, ToastContainer } from "react-toastify";
 
 const Menucard = () => {
   const items = useSelector((state: any) => state.addToCart);
@@ -11,18 +12,8 @@ const Menucard = () => {
   const dispatch = useDispatch()
   const handleRemove = (item: Number)=>{
     dispatch(removeItem(item))
+    toast.error("Item is removed from Cart")
   }
-  // const totalPrice = ()=>{
-  //   let price = 0;
-  //   items.map((item:ProductsData) => {
-  //     price = (item.price * item.quantity)+ price
-  //   })
-  //   setPrice(parseFloat(price.toFixed(2)))
-  // }
-  // useEffect(()=> {
-  //   console.log("printing from useEffect")
-  //   totalPrice()
-  // },[totalPrice])
   useEffect(()=> {
     const totalPrice = ()=>{
       let price = 0;
@@ -31,7 +22,6 @@ const Menucard = () => {
       })
       setPrice(parseFloat(price.toFixed(2)))
     }
-    console.log("printing from useEffect")
     totalPrice()
   },[items])
   return (
@@ -60,6 +50,7 @@ const Menucard = () => {
       })}
       <hr className="border-y-1 border-slate-600"/>
       <p className="text-sm my-2 mx-3">Total : ₹ {price}</p>
+      <ToastContainer />
     </div>
   );
 };

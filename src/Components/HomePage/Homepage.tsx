@@ -5,10 +5,13 @@ import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
 import {addItem} from "../../ReduxStore/Slices/cartItem"
+import { toast, ToastContainer } from "react-toastify";
+
 const Homepage = () => {
   const [products, setProducts] = useState<ProductsData[]>([]);
   const dispatch = useDispatch()
   const handleAddToCart = (item: ProductsData)=>{
+    toast.success("Item is added to Cart")
     dispatch(addItem(item))
   }
 
@@ -56,6 +59,7 @@ const Homepage = () => {
           );
         })}
       </div>
+      <ToastContainer />
     </div>
   );
 };

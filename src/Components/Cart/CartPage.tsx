@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductsData } from "../models/model";
 import { quantityIncrementor, quantityDecrementor,removeItem } from "../../ReduxStore/Slices/cartItem";
 import "../styles/styling.css";
+import { toast, ToastContainer } from "react-toastify";
+
 const CartPage = () => {
   const items = useSelector((state: any) => state.addToCart);
   const dispatch = useDispatch()
@@ -16,6 +18,7 @@ const CartPage = () => {
   }
   const handleRemove = (item: number) => {
     dispatch(removeItem(item))
+    toast.error("Item is removed from Cart")
   }
   return (
     <div className="overflow-y-clip">
@@ -56,7 +59,7 @@ const CartPage = () => {
                     <p className="text-sm text-slate-500 line-clamp-5">
                       {item.description}
                     </p>
-                    <p className=" bottom-16">
+                    <p className=" mt-4">
                       <strong>Remove : </strong>
                       <FontAwesomeIcon
                         icon={faTrashCan}
@@ -87,6 +90,7 @@ const CartPage = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };
